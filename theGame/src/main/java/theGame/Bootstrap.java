@@ -3,6 +3,7 @@ package theGame;
 import java.util.Random;
 
 import mapGeneration.display.TileDrawer;
+import mapGeneration.noise.FractionnalBrownianMotion;
 import mapGeneration.noise.PerlinNoise;
 
 import org.lwjgl.LWJGLException;
@@ -12,16 +13,19 @@ import org.lwjgl.opengl.GL11;
 
 public class Bootstrap {
 	
-	public static final int TILE_SIZE = 2;
-	public static final int MAP_WIDTH = 400/TILE_SIZE;
-	public static final int MAP_HEIGTH = 400/TILE_SIZE;
+	public static final int TILE_SIZE = 5;
+	public static final int DISPLAY_WIDTH = 1600;
+	public static final int DISPLAY_HEIGTH = 800;
+	public static final int MAP_WIDTH = DISPLAY_WIDTH/TILE_SIZE;
+	public static final int MAP_HEIGTH = DISPLAY_HEIGTH/TILE_SIZE;
 	
 	TileDrawer drawer = new TileDrawer(TILE_SIZE);
-	PerlinNoise noise = new PerlinNoise();
+	PerlinNoise noise = new PerlinNoise(64);
+	FractionnalBrownianMotion motion = new FractionnalBrownianMotion(noise, 2.168, 8);
  
     public void start() {
         try {
-	    Display.setDisplayMode(new DisplayMode(400,400));
+	    Display.setDisplayMode(new DisplayMode(DISPLAY_WIDTH,DISPLAY_HEIGTH));
 	    Display.create();
 	} catch (LWJGLException e) {
 	    e.printStackTrace();
@@ -31,10 +35,10 @@ public class Bootstrap {
 	// init OpenGL
 	GL11.glMatrixMode(GL11.GL_PROJECTION);
 	GL11.glLoadIdentity();
-	GL11.glOrtho(0, 400, 0, 400, 1, -1);
+	GL11.glOrtho(0, DISPLAY_WIDTH, 0, DISPLAY_HEIGTH, 1, -1);
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	
-	double[][] map = noise.generateHeigthMap(MAP_WIDTH, MAP_HEIGTH,10);
+	double[][] map = motion.generateHeigthMap(MAP_WIDTH, MAP_HEIGTH);
 	System.out.println("Generation over");
 	
  
@@ -50,6 +54,7 @@ public class Bootstrap {
 		}
  
 	    Display.update();
+	    Display.sync(30);
 	}
  
 	Display.destroy();

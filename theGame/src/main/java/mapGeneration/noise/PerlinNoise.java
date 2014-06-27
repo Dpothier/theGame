@@ -8,11 +8,13 @@ import java.util.Random;
 import mapGeneration.data.Vector;
 import mapGeneration.data.Gradients;
 
-public class PerlinNoise {
+public class PerlinNoise implements Noise{
 	
 	private Vector[][] gradiantTable = new Vector[8][8];
+	private int res;
 	
-	public PerlinNoise(){
+	public PerlinNoise(int res){
+		this.res = res;
 		generateGradiantTable();
 	}
 	
@@ -29,18 +31,18 @@ public class PerlinNoise {
 
 
 
-	public double[][] generateHeigthMap(int heigth, int width,int res){
+	public double[][] generateHeigthMap(int heigth, int width){
 		double[][] heigthMap = new double[heigth][width];
 		for(int i = 0; i < heigth; i++){
 			for(int j = 0; j < width; j++){
-				heigthMap[i][j] = (generatePixel(i, j,res)+1)/2;
+				heigthMap[i][j] = (generatePixel(i, j)+1)/2;
 			}
 		}
 		return heigthMap;
 		
 	}
 
-	private double generatePixel(int i, int j,int res) {
+	public double generatePixel(double i, double j) {
 		double x = ((double)i) /res;
 		double y = ((double)j) /res;
 		
@@ -67,7 +69,7 @@ public class PerlinNoise {
 		
 		double interpolatedX1 = lerp(s,t,fadedX);
 		double interpolatedX2 = lerp(u,v,fadedX);
-		return lerp(interpolatedX1, interpolatedX2, fadedY);
+		return (lerp(interpolatedX1, interpolatedX2, fadedY)+1)/2;
 
 	}
 
@@ -77,10 +79,11 @@ public class PerlinNoise {
 			  10 * x * x * x;
 	}
 	
-	double lerp(double a, double b, double f) 
+	private double lerp(double a, double b, double f) 
 	{
 	    return (a * (1.0f - f)) + (b * f);
 	}
+
 	
 
 }
