@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 public class Bootstrap {
 	
-	public static final int TILE_SIZE = 10;
+	public static final int TILE_SIZE = 2;
 	public static final int MAP_WIDTH = 400/TILE_SIZE;
 	public static final int MAP_HEIGTH = 400/TILE_SIZE;
 	
@@ -34,7 +34,7 @@ public class Bootstrap {
 	GL11.glOrtho(0, 400, 0, 400, 1, -1);
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	
-	double[][] map = noise.generateHeigthMap(MAP_WIDTH, MAP_HEIGTH,20, 100);
+	double[][] map = noise.generateHeigthMap(MAP_WIDTH, MAP_HEIGTH,10);
 	System.out.println("Generation over");
 	
  

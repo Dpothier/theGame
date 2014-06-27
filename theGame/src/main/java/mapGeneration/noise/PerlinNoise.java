@@ -9,26 +9,11 @@ import mapGeneration.data.Vector;
 import mapGeneration.data.Gradients;
 
 public class PerlinNoise {
-	private static final int PERMUTATION_TABLE_SIZE = 256;
 	
-	private List<Integer> permutationTable = new ArrayList<>();
-	private Gradients possibleGradients = new Gradients();
 	private Vector[][] gradiantTable = new Vector[8][8];
 	
 	public PerlinNoise(){
-		generatePermutationTable();
 		generateGradiantTable();
-	}
-
-	private void generatePermutationTable() {
-		for(int i = 0; i < PERMUTATION_TABLE_SIZE; i++){
-			permutationTable.add(i);
-		}
-		Collections.shuffle(permutationTable);
-		for(int i =0; i < PERMUTATION_TABLE_SIZE; i++){
-			System.out.println(permutationTable.get(i));
-			permutationTable.add(permutationTable.get(i));
-		}
 	}
 	
 	private void generateGradiantTable() {
@@ -44,28 +29,28 @@ public class PerlinNoise {
 
 
 
-	public double[][] generateHeigthMap(int heigth, int width,int squareSize, int res){
+	public double[][] generateHeigthMap(int heigth, int width,int res){
 		double[][] heigthMap = new double[heigth][width];
 		for(int i = 0; i < heigth; i++){
 			for(int j = 0; j < width; j++){
-				heigthMap[i][j] = generatePixel(i, j,squareSize, res);
+				heigthMap[i][j] = (generatePixel(i, j,res)+1)/2;
 			}
 		}
 		return heigthMap;
 		
 	}
 
-	private double generatePixel(int i, int j,int squareSize, int res) {
-		double x = ((double)i) /squareSize;
-		double y = ((double)j) /squareSize;
+	private double generatePixel(int i, int j,int res) {
+		double x = ((double)i) /res;
+		double y = ((double)j) /res;
 		
 		double fractionnalX = x - (int)x;
-		double fractionnalY = x - (int)y;
+		double fractionnalY = y - (int)y;
 		
-		Vector upperLeftGridPoint = gradiantTable[(int) Math.floor(x)][(int) Math.floor(y)];
-		Vector upperRigthGridPoint = gradiantTable[(int)Math.ceil(x)][(int)Math.floor(y)];
-		Vector lowerLeftGridPoint = gradiantTable[(int)Math.floor(x)][(int) Math.ceil(y)];
-		Vector lowerRigthGridPoint = gradiantTable[(int)Math.ceil(x)][(int)Math.ceil(y)];
+		Vector upperLeftGridPoint = gradiantTable[(int) Math.floor(x)%8][(int) Math.floor(y)%8];
+		Vector upperRigthGridPoint = gradiantTable[(int)Math.ceil(x)%8][(int)Math.floor(y)%8];
+		Vector lowerLeftGridPoint = gradiantTable[(int)Math.floor(x)%8][(int) Math.ceil(y)%8];
+		Vector lowerRigthGridPoint = gradiantTable[(int)Math.ceil(x)%8][(int)Math.ceil(y)%8];
 		
 		Vector distanceToUpperLeft = new Vector(fractionnalX, fractionnalY);
 		Vector distanceToUpperRigth= new Vector(fractionnalX - 1, fractionnalY);
@@ -77,35 +62,12 @@ public class PerlinNoise {
 		double u = lowerLeftGridPoint.dotProduce(distanceToLowerLeft);
 		double v = lowerRigthGridPoint.dotProduce(distanceToLowerRigth);
 		
-		/*int x0 = (int) x;
-		int y0 = (int) y;
-		int ii = i &  PERMUTATION_TABLE_SIZE-1;
-		int jj = j & PERMUTATION_TABLE_SIZE-1;
-		Vector[] gradients = new Vector[4];
-		gradients[0] = possibleGradients.getGradient(permutationTable.get(ii + permutationTable.get(jj)) % 8);
-		gradients[1] = possibleGradients.getGradient(permutationTable.get(ii+1 + permutationTable.get(jj )) % 8);
-		gradients[2] = possibleGradients.getGradient(permutationTable.get(ii + permutationTable.get(jj+1)) % 8);
-		gradients[3] = possibleGradients.getGradient(permutationTable.get(ii + 1 + permutationTable.get(jj + 1)) % 8);
-		
-		double s = ponderer(x-x0, y-y0, gradients[0]);
-		double t = ponderer(x-(x0+1), y-(y0), gradients[1]);
-		double u = ponderer(x-x0, y-(y0+1), gradients[2]);
-		double v = ponderer(x-(x0+1), y-(y0+1), gradients[3]);*/
-		
 		double fadedX = fade(fractionnalX);
 		double fadedY = fade(fractionnalY);
 		
-		return 0;
-		/*double tmp = x-x0;
-	    double Cx = 3 * tmp * tmp - 2 * tmp * tmp * tmp;
-
-	    double Li1 = s + Cx*(t-s);
-	    double Li2 = u + Cx*(v-u);
-
-	     tmp = y - y0;
-	    double Cy = 3 * tmp * tmp - 2 * tmp * tmp * tmp;
-
-	    return ((Li1 + Cy*(Li2-Li1)) + 1) * 0.5;*/
+		double interpolatedX1 = lerp(s,t,fadedX);
+		double interpolatedX2 = lerp(u,v,fadedX);
+		return lerp(interpolatedX1, interpolatedX2, fadedY);
 
 	}
 
@@ -114,10 +76,10 @@ public class PerlinNoise {
 			  15 * x * x * x * x +
 			  10 * x * x * x;
 	}
-
-	private double ponderer(double x, double y, Vector gradient) {
-		return gradient.x * x + gradient.y * y;
-		
+	
+	double lerp(double a, double b, double f) 
+	{
+	    return (a * (1.0f - f)) + (b * f);
 	}
 	
 
