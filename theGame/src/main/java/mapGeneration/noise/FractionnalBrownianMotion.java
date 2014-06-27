@@ -1,6 +1,6 @@
 package mapGeneration.noise;
 
-public class FractionnalBrownianMotion {
+public class FractionnalBrownianMotion implements Noise{
 	
 	private Noise noise;
 	private double lacunarity;
@@ -8,9 +8,15 @@ public class FractionnalBrownianMotion {
 	private int octaves;
 
 	public FractionnalBrownianMotion(Noise noise, double lacunarity, int octaves){
+		this(noise, lacunarity, 1/lacunarity, octaves);
+	}
+
+	public FractionnalBrownianMotion(Noise noise, double lacunarity, double gain,
+			int octaves) {
 		this.noise = noise;
 		this.lacunarity = lacunarity;
-		this.gain = 1/lacunarity;
+		this.gain = gain;
+		System.out.println(gain);
 		this.octaves = octaves;
 	}
 
@@ -24,7 +30,7 @@ public class FractionnalBrownianMotion {
 		return heigthMap;
 	}
 
-	private double generatePixel(int x, int y) {
+	public double generatePixel(double x, double y) {
 		double total = 0;
 		double frequency = 1;
 		double amplitude = gain;

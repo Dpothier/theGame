@@ -2,6 +2,7 @@ package theGame;
 
 import java.util.Random;
 
+import mapGeneration.GridGenerator;
 import mapGeneration.display.TileDrawer;
 import mapGeneration.noise.FractionnalBrownianMotion;
 import mapGeneration.noise.PerlinNoise;
@@ -19,9 +20,10 @@ public class Bootstrap {
 	public static final int MAP_WIDTH = DISPLAY_WIDTH/TILE_SIZE;
 	public static final int MAP_HEIGTH = DISPLAY_HEIGTH/TILE_SIZE;
 	
-	TileDrawer drawer = new TileDrawer(TILE_SIZE);
+	TileDrawer drawer = new TileDrawer(TILE_SIZE, 0.4, 0.6);
 	PerlinNoise noise = new PerlinNoise(64);
-	FractionnalBrownianMotion motion = new FractionnalBrownianMotion(noise, 2.168, 8);
+	FractionnalBrownianMotion motion = new FractionnalBrownianMotion(noise, 2, 6);
+	GridGenerator generator = new GridGenerator(MAP_WIDTH, MAP_HEIGTH, motion);
  
     public void start() {
         try {
@@ -38,7 +40,7 @@ public class Bootstrap {
 	GL11.glOrtho(0, DISPLAY_WIDTH, 0, DISPLAY_HEIGTH, 1, -1);
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	
-	double[][] map = motion.generateHeigthMap(MAP_WIDTH, MAP_HEIGTH);
+	double[][] map = generator.generateHeigthMap();
 	System.out.println("Generation over");
 	
  
