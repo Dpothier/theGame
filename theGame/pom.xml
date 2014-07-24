@@ -3,6 +3,18 @@
   <groupId>org.MagickBeanzors</groupId>
   <artifactId>theGame</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.mockito</groupId>
+  		<artifactId>mockito-all</artifactId>
+  		<version>1.9.5</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.mockito</groupId>
+  		<artifactId>mockito-core</artifactId>
+  		<version>1.9.5</version>
+  	</dependency>
+  </dependencies>
 </project>
   <dependencies>
   	<dependency>

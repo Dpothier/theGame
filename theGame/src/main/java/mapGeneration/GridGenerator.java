@@ -1,5 +1,6 @@
 package mapGeneration;
 
+import theGame.UI.Tile;
 import mapGeneration.noise.Noise;
 
 public class GridGenerator {
@@ -14,11 +15,11 @@ public class GridGenerator {
 		this.noise = noise;
 	}
 	
-	public double[][] generateHeigthMap(){
-		double[][] heigthMap = new double[width][heigth];
+	public Tile[][] generateHeigthMap(){
+		Tile[][] heigthMap = new Tile[width][heigth];
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < heigth; j++){
-				heigthMap[i][j] = noise.generatePixel(i, j);
+				heigthMap[i][j] = new Tile(noise.generatePixel(i, j));
 			}
 		}
 		return heigthMap;

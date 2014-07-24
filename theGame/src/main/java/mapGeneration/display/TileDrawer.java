@@ -4,50 +4,40 @@ import java.awt.Color;
 
 import org.lwjgl.opengl.GL11;
 
+import theGame.UI.Tile;
+
 public class TileDrawer {
 	
 	private int tileSize;
 	private double waterLevel;
-	private double mountainLevel;
 
-	public TileDrawer(int tileSize, double waterLevel, double mountainLevel) {
+	public TileDrawer(int tileSize, double waterLevel) {
 		this.tileSize = tileSize;
 		this.waterLevel = waterLevel;
-		this.mountainLevel = mountainLevel;
 	}
 
-	public void drawTile(int tileColumn, int tileRow, double value){
+	public void drawTile(int tileColumn, int tileRow, Tile tile){
 		int tileStartX = tileColumn * tileSize;
 		int tileStartY = tileRow * tileSize;
 		
-		if(value <= waterLevel){
-			setWaterColor((int)(value*255));
+		if(tile.heigth<= waterLevel){
+			setWaterColor((int)(tile.heigth*255));
 			GL11.glBegin(GL11.GL_QUADS);
 			GL11.glVertex2f(tileStartX,tileStartY);
 			GL11.glVertex2f(tileStartX + tileSize,tileStartY);
 			GL11.glVertex2f(tileStartX + tileSize, tileStartY + tileSize);
 			GL11.glVertex2f(tileStartX, tileStartY + tileSize);
 			GL11.glEnd();
-		}
-		else if(value >= mountainLevel){
-			setMoutainColor((int)(value*255));
 		}
 		else{
-			setGrassLandColor((int)(value*255));
+			setGrassLandColor((int)(tile.heigth*255));
 			GL11.glBegin(GL11.GL_QUADS);
 			GL11.glVertex2f(tileStartX,tileStartY);
 			GL11.glVertex2f(tileStartX + tileSize,tileStartY);
 			GL11.glVertex2f(tileStartX + tileSize, tileStartY + tileSize);
 			GL11.glVertex2f(tileStartX, tileStartY + tileSize);
 			GL11.glEnd();
-		}
-		
-		
-	}
-
-	private void setMoutainColor(int i) {
-		
-		
+		}	
 	}
 
 	private void setGrassLandColor(int value) {
@@ -55,6 +45,7 @@ public class TileDrawer {
 		Color.RGBtoHSB(value, value, value, hsv);
 		hsv[0] = (float)130/360;
 		hsv[1] = (float) 1;
+		hsv[2] -= 0.15;
 		Color waterColor = Color.getHSBColor(hsv[0], hsv[1], hsv[2]);
 
 		float red = ((float)waterColor.getRed())/255;
