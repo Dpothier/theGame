@@ -53,6 +53,7 @@ public class Bootstrap {
 	    // Clear the screen and depth buffer
 	    GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);	
 
+	    frame.move(1, 1);
 		frame.display();
  
 	    Display.update();
