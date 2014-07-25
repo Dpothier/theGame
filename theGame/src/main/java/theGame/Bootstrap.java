@@ -11,6 +11,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
+import theGame.General.BoundedInterval;
 import theGame.General.Interval;
 import theGame.UI.Frame;
 import theGame.UI.Map;
@@ -47,7 +48,7 @@ public class Bootstrap {
 	GL11.glOrtho(0, DISPLAY_WIDTH, 0, DISPLAY_HEIGTH, 1, -1);
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	
-	Frame frame = new Frame(new Interval(0, DISPLAY_WIDTH - 1),new Interval(0, DISPLAY_HEIGTH - 1), new Interval(0, MAP_WIDTH - 1), new Interval(0, MAP_HEIGTH - 1));
+	Frame frame = new Frame(new BoundedInterval(new Interval(0, MAP_WIDTH -1), 0, DISPLAY_WIDTH - 1),new BoundedInterval(new Interval(0, MAP_HEIGTH -1), 0, DISPLAY_HEIGTH - 1));
 	Map map = new Map(generator.generateHeigthMap(),drawer, frame);
 	
 	EventManager eventManager = new EventManager(new EventPoller());

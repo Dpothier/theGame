@@ -2,8 +2,8 @@ package theGame.General;
 
 public class Interval {
 
-	private int startPoint;
-	private int endPoint;
+	protected int startPoint;
+	protected int endPoint;
 	
 	public Interval(int startPoint,int endPoint){
 		if(startPoint > endPoint){

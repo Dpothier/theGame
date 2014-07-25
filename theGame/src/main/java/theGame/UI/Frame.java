@@ -1,19 +1,18 @@
 package theGame.UI;
 
+import org.junit.Assert;
+
+import theGame.General.BoundedInterval;
 import theGame.General.Interval;
 
 public class Frame {
 	
 	private Interval width;
 	private Interval heigth;
-	private Interval boundsInX;
-	private Interval boundsInY;
 	
-	public Frame(Interval width, Interval heigth, Interval boundsInX, Interval boundsInY) {
+	public Frame(Interval width, Interval heigth) {
 		this.width = width;
 		this.heigth = heigth;
-		this.boundsInX = boundsInX;
-		this.boundsInY = boundsInY;
 	}
 	
 	public Tile[][] tilesInFrame(Tile[][] tiles){
@@ -28,18 +27,8 @@ public class Frame {
 	}
 	
 	public void move(int x, int y){
-		if(canMove(x, y))
-		{
 			width = width.move(x);
 			heigth = heigth.move(y);
-		}
-	}
-
-	private boolean canMove(int x, int y) {
-		if(!(boundsInX.contains(width.move(x)) && boundsInY.contains(heigth.move(y)))){
-			return false;
-		}
-		return true;
 	}
 
 }
