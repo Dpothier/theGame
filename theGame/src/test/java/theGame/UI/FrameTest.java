@@ -12,15 +12,20 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import theGame.General.Interval;
+
 @RunWith(MockitoJUnitRunner.class)
 public class FrameTest {
 	private final int FRAME_WIDTH = 640;
 	private final int FRAME_HEIGTH = 480;
 	
+	private Interval width;
+	private Interval heigth;
+	
 	@Mock
-	private TileGroup map;
+	private Map map;
 	@Mock
-	private TileGroup framedMap;
+	private Map framedMap;
 	@Mock
 	private TileDrawer tileDrawer;
 	
@@ -28,13 +33,14 @@ public class FrameTest {
 	
 	@Before
 	public void SetUp(){
-		frame = new Frame(map, tileDrawer, FRAME_WIDTH, FRAME_HEIGTH);
-		
+		width = new Interval(0, FRAME_WIDTH);
+		heigth = new Interval(0, FRAME_HEIGTH);
+		frame = new Frame(map, tileDrawer, width, heigth);
 	}
 	
 	@Test
 	public void display_draws_all_tiles_contained_in_frame(){
-		when(map.getSubgroup(0, 0, FRAME_WIDTH, FRAME_HEIGTH)).thenReturn(framedMap);
+		when(map.getSubmap(width, heigth)).thenReturn(framedMap);
 		
 		frame.display();
 		

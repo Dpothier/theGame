@@ -1,17 +1,19 @@
 package theGame.UI;
 
+import org.mockito.Mock;
+
+import theGame.General.Interval;
 import mapGeneration.display.TileDrawer;
 
 public class Frame {
 	
-	private int x = 0;
-	private int y = 0;
-	private TileGroup map;
+	private Interval width;
+	private Interval heigth;
+
+	private Map map;
 	private TileDrawer tileDrawer;
-	private int width;
-	private int heigth;
 	
-	public Frame(TileGroup map, TileDrawer tileDrawer, int width, int heigth) {
+	public Frame(Map map, TileDrawer tileDrawer, Interval width, Interval heigth) {
 		this.map = map;
 		this.tileDrawer = tileDrawer;
 		this.width = width;
@@ -19,23 +21,23 @@ public class Frame {
 	}
 
 	public void display() {
-		TileGroup framedMap = map.getSubgroup(x, y, width, heigth);
+		Map framedMap = map.getSubmap(width, heigth);
 		framedMap.draw(tileDrawer);
 	}
 	
 	public void move(int x, int y){
 		if(canMove(x, y))
 		{
-			this.x += x;
-			this.y += y;
+			width = width.move(x);
+			heigth = heigth.move(y);
 		}
 	}
 
 	private boolean canMove(int x, int y) {
-		if(this.x + width + x > map.getTiles().length){
+		if(width.move(x).getEndPoint()  > map.getTiles().length){
 			return false;
 		}
-		if(this.y + heigth + y > map.getTiles()[0].length){
+		if(heigth.move(y).getEndPoint() > map.getTiles()[0].length){
 			return false;
 		}
 		return true;

@@ -6,11 +6,13 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import theGame.General.Interval;
 import static org.mockito.Mockito.verify;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class TileGroupTest {
+public class MapTest {
 	
 	@Mock
 	private Tile tile1,tile2,tile3,
@@ -19,7 +21,7 @@ public class TileGroupTest {
 	@Mock
 	private TileDrawer drawer;
 	private Tile[][] tiles;
-	private TileGroup map;
+	private Map map;
 	
 	@Before
 	public void SetUp(){
@@ -34,12 +36,12 @@ public class TileGroupTest {
 		tiles[1][2] = tile8;
 		tiles[2][2] = tile9;
 		
-		map = new TileGroup(tiles);
+		map = new Map(tiles);
 	}
 	
 	@Test
 	public void askingForTopLeftSubsetReturnsTopLeftSubset(){
-		TileGroup returnedMap = map.getSubgroup(0,0,2,2);
+		Map returnedMap = map.getSubmap(new Interval(0,1), new Interval(0,1));
 		
 		assertSize(returnedMap,2 ,2);
 		Assert.assertSame(tile1, returnedMap.getTiles()[0][0]);
@@ -50,7 +52,7 @@ public class TileGroupTest {
 	
 	@Test
 	public void askingForBottomRigthSubsetReturnsBottomRigthSubset(){
-		TileGroup returnedMap = map.getSubgroup(1, 1, 2, 2);
+		Map returnedMap = map.getSubmap(new Interval(1,2), new Interval(1,2));
 		assertSize(returnedMap, 2, 2);
 		Assert.assertSame(tile5, returnedMap.getTiles()[0][0]);
 		Assert.assertSame(tile6, returnedMap.getTiles()[1][0]);
@@ -60,7 +62,7 @@ public class TileGroupTest {
 	
 	@Test
 	public void askingForARowReturnsRigthSubset(){
-		TileGroup returnedMap = map.getSubgroup(0, 0, 3, 1);
+		Map returnedMap = map.getSubmap(new Interval(0,2), new Interval(0,0));
 		assertSize(returnedMap, 3, 1);
 		Assert.assertSame(tile1, returnedMap.getTiles()[0][0]);
 		Assert.assertSame(tile2, returnedMap.getTiles()[1][0]);
@@ -69,7 +71,7 @@ public class TileGroupTest {
 	
 	@Test
 	public void asking_for_a_column(){
-		TileGroup returnedMap = map.getSubgroup(0, 0, 1, 3);
+		Map returnedMap = map.getSubmap(new Interval(0,0), new Interval(0,2));
 		assertSize(returnedMap, 1, 3);
 		Assert.assertSame(tile1, returnedMap.getTiles()[0][0]);
 		Assert.assertSame(tile4, returnedMap.getTiles()[0][1]);
@@ -78,32 +80,22 @@ public class TileGroupTest {
 	
 	@Test(expected = SubsetOutOfBoundException.class)
 	public void askingForBaseXOutsideMapThrowsException(){
-		map.getSubgroup(4, 0, 1, 1);
+		map.getSubmap(new Interval(4,4), new Interval(0,0));
 	}
 	
 	@Test(expected = SubsetOutOfBoundException.class)
 	public void askingForBaseYOutsideMapThrowsException(){
-		map.getSubgroup(0, 4, 1, 1);
+		map.getSubmap(new Interval(0,0), new Interval(4,4));
 	}
 	
 	@Test(expected = SubsetOutOfBoundException.class)
-	public void askingForSubsetOutOfMapXThrowsException(){
-		map.getSubgroup(0,0,4,1);
+	public void asking_For_Subset_Out_Of_Map_X_Throws_Exception(){
+		map.getSubmap(new Interval(0,4), new Interval(0,0));
 	}
 	
 	@Test(expected = SubsetOutOfBoundException.class)
-	public void askingForSubsetOutOfMapYThrowsException(){
-		map.getSubgroup(0,0,1,4);
-	}
-	
-	@Test(expected = EmptySubsetException.class)
-	public void askedSubsetForHaveAWidthGreaterThan0(){
-		map.getSubgroup(0, 0, 0, 1);
-	}
-	
-	@Test(expected = EmptySubsetException.class)
-	public void askedSubsetMustHaveAHeigthGreaterThan0(){
-		map.getSubgroup(0, 0, 1, 0);
+	public void asking_For_Subset_Out_Of_Map_Y_Throws_Exception(){
+		map.getSubmap(new Interval(0,0), new Interval(0,4));
 	}
 	
 	@Test
@@ -122,7 +114,7 @@ public class TileGroupTest {
 	}
 
 	
-	private void assertSize(TileGroup returnedMap, int width, int heigth) {
+	private void assertSize(Map returnedMap, int width, int heigth) {
 		Assert.assertEquals(width, returnedMap.getTiles().length);
 		for(int i = 0; i < width; i++){
 			Assert.assertEquals(heigth, returnedMap.getTiles()[i].length);

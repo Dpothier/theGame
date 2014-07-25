@@ -12,9 +12,10 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
+import theGame.General.Interval;
 import theGame.UI.Frame;
 import theGame.UI.Tile;
-import theGame.UI.TileGroup;
+import theGame.UI.Map;
 
 public class Bootstrap {
 	
@@ -44,8 +45,8 @@ public class Bootstrap {
 	GL11.glOrtho(0, DISPLAY_WIDTH, 0, DISPLAY_HEIGTH, 1, -1);
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	
-	TileGroup map = new TileGroup(generator.generateHeigthMap());
-	Frame frame = new Frame(map, drawer, DISPLAY_WIDTH, DISPLAY_HEIGTH);
+	Map map = new Map(generator.generateHeigthMap());
+	Frame frame = new Frame(map, drawer, new Interval(0, DISPLAY_WIDTH),new Interval(0, DISPLAY_HEIGTH));
 	System.out.println("Generation over");
 	
  
