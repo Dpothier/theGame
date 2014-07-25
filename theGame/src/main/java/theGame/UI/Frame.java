@@ -6,18 +6,25 @@ public class Frame {
 	
 	private Interval width;
 	private Interval heigth;
-
-	private Map map;
+	private Interval boundsInX;
+	private Interval boundsInY;
 	
-	public Frame(Map map,Interval width, Interval heigth) {
-		this.map = map;
+	public Frame(Interval width, Interval heigth, Interval boundsInX, Interval boundsInY) {
 		this.width = width;
 		this.heigth = heigth;
+		this.boundsInX = boundsInX;
+		this.boundsInY = boundsInY;
 	}
-
-	public void display() {
-		Map framedMap = map.getSubmap(width, heigth);
-		framedMap.draw();
+	
+	public Tile[][] tilesInFrame(Tile[][] tiles){
+		Tile[][] submapTiles = new Tile[width.distance() + 1][heigth.distance() + 1];
+		for(int i = 0; i < width.distance() + 1; i++){
+			for(int j = 0; j < heigth.distance() + 1; j++){
+				submapTiles[i][j] = tiles[i + width.getStartPoint()][j + heigth.getStartPoint()];
+			}
+		}
+		return submapTiles;
+		
 	}
 	
 	public void move(int x, int y){
@@ -29,16 +36,7 @@ public class Frame {
 	}
 
 	private boolean canMove(int x, int y) {
-		if(width.move(x).getStartPoint() < 0){
-			return false;
-		}
-		if(heigth.move(y).getStartPoint() < 0){
-			return false;
-		}
-		if(width.move(x).getEndPoint()  > map.getTiles().length){
-			return false;
-		}
-		if(heigth.move(y).getEndPoint() > map.getTiles()[0].length){
+		if(!(boundsInX.contains(width.move(x)) && boundsInY.contains(heigth.move(y)))){
 			return false;
 		}
 		return true;

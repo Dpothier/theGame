@@ -20,6 +20,9 @@ public class MapTest {
 				 tile7,tile8,tile9;
 	@Mock
 	private TileDrawer drawer;
+	@Mock
+	private Frame frame;
+	
 	private Tile[][] tiles;
 	private Map map;
 	
@@ -36,7 +39,7 @@ public class MapTest {
 		tiles[1][2] = tile8;
 		tiles[2][2] = tile9;
 		
-		map = new Map(tiles, drawer);
+		map = new Map(tiles, drawer, frame);
 	}
 	
 	@Test

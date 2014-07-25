@@ -24,8 +24,8 @@ public class Bootstrap {
 	public static final int TILE_SIZE = 2;
 	public static final int DISPLAY_WIDTH = 640;
 	public static final int DISPLAY_HEIGTH = 480;
-	public static final int MAP_WIDTH = 1600;
-	public static final int MAP_HEIGTH = 1600;
+	public static final int MAP_WIDTH = 800;
+	public static final int MAP_HEIGTH = 800;
 	
 	TileDrawer drawer = new TileDrawer(TILE_SIZE, 0.5);
 	PerlinNoise noise = new PerlinNoise(256);
@@ -47,8 +47,9 @@ public class Bootstrap {
 	GL11.glOrtho(0, DISPLAY_WIDTH, 0, DISPLAY_HEIGTH, 1, -1);
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	
-	Map map = new Map(generator.generateHeigthMap(), drawer);
-	Frame frame = new Frame(map, new Interval(0, DISPLAY_WIDTH),new Interval(0, DISPLAY_HEIGTH));
+	Frame frame = new Frame(new Interval(0, DISPLAY_WIDTH - 1),new Interval(0, DISPLAY_HEIGTH - 1), new Interval(0, MAP_WIDTH - 1), new Interval(0, MAP_HEIGTH - 1));
+	Map map = new Map(generator.generateHeigthMap(),drawer, frame);
+	
 	EventManager eventManager = new EventManager(new EventPoller());
 	MoveFrameService service = new MoveFrameService(frame);
 	eventManager.registerTrigger(new ArrowTrigger(service, 5));
@@ -61,7 +62,7 @@ public class Bootstrap {
 
 	    eventManager.manageEvents();
 	    service.move();
-		frame.display();
+		map.draw();
  
 	    Display.update();
 	    Display.sync(30);

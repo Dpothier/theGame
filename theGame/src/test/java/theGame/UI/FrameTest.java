@@ -16,9 +16,13 @@ import theGame.General.Interval;
 public class FrameTest {
 	private final int FRAME_WIDTH = 640;
 	private final int FRAME_HEIGTH = 480;
+	private final int MAP_WIDTH = 1200;
+	private final int MAP_HEIGTH = 1200;
 	
 	private Interval width;
 	private Interval heigth;
+	private Interval boundsInX;
+	private Interval boundsInY;
 	
 	@Mock
 	private Map map;
@@ -33,14 +37,15 @@ public class FrameTest {
 	public void SetUp(){
 		width = new Interval(0, FRAME_WIDTH);
 		heigth = new Interval(0, FRAME_HEIGTH);
-		frame = new Frame(map, width, heigth);
+		boundsInX = new Interval(0, MAP_WIDTH);
+		boundsInY = new Interval(0, MAP_HEIGTH);
+		frame = new Frame(width, heigth, boundsInX, boundsInY);
 	}
 	
 	@Test
 	public void display_draws_all_tiles_contained_in_frame(){
 		when(map.getSubmap(width, heigth)).thenReturn(framedMap);
 		
-		frame.display();
 		
 		verify(framedMap).draw();
 	}

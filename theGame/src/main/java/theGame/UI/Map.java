@@ -9,14 +9,16 @@ public class Map implements Widget{
 	private Interval x;
 	private Interval y;
 	private TileDrawer drawer;
+	private Frame frame;
 	
 	public Tile[][] getTiles(){
 		return tiles;
 	}
 	
-	public Map(Tile[][] tiles, TileDrawer drawer) {
+	public Map(Tile[][] tiles, TileDrawer drawer, Frame frame) {
 		this.drawer = drawer;
 		this.tiles = tiles;
+		this.frame = frame;
 		y = new Interval(0, tiles.length - 1);
 		x = new Interval(0, tiles[0].length - 1);
 	}
@@ -24,7 +26,7 @@ public class Map implements Widget{
 	public Map getSubmap(Interval x, Interval y) {
 		checkBounds(x, y);
 		Tile[][] subgroupTiles = extractSubmap(x,y);
-		return new Map(subgroupTiles, drawer);
+		return new Map(subgroupTiles, drawer, frame);
 	}
 
 	private Tile[][] extractSubmap(Interval x, Interval y) {
@@ -44,9 +46,10 @@ public class Map implements Widget{
 	}
 
 	public void draw() {
-		for(int i = 0; i < tiles.length; i++){
-			for(int j = 0; j < tiles[i].length; j++){
-				drawer.drawTile(i, j, tiles[i][j]);
+		Tile[][] framedTiles = frame.tilesInFrame(tiles);
+		for(int i = 0; i < framedTiles.length; i++){
+			for(int j = 0; j < framedTiles[i].length; j++){
+				drawer.drawTile(i, j, framedTiles[i][j]);
 			}
 		}
 		
