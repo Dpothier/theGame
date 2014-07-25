@@ -71,13 +71,4 @@ public class TileDrawer {
 		GL11.glColor3d(red,green,blue);
 	}
 
-	private void setDeepWaterColor() {
-		double red = 12.0/255.0;
-		double green = 16.0/255.0;
-		double blue = 138.0/255.0;
-		GL11.glColor3d(red,green,blue);
-		
-		
-	}
-
 }

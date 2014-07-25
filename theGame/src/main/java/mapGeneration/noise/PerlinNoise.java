@@ -1,12 +1,8 @@
 package mapGeneration.noise;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import mapGeneration.data.Vector;
-import mapGeneration.data.Gradients;
 
 public class PerlinNoise implements Noise{
 	

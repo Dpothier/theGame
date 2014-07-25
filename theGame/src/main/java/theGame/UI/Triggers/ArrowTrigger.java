@@ -1,7 +1,5 @@
 package theGame.UI.Triggers;
 
-import jeu.quadsAdventure.gameService.MoveQuadService;
-
 import org.lwjgl.input.Keyboard;
 
 import theGame.engine.input.EventBasedTrigger;

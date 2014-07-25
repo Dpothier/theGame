@@ -7,7 +7,6 @@ import org.junit.runner.*;
 import org.mockito.*;
 import org.mockito.runners.*;
 
-import theGame.engine.input.*;
 import theGame.engine.input.event.*;
 import theGame.engine.input.exception.*;
 

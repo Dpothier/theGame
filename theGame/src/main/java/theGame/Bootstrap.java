@@ -1,6 +1,5 @@
 package theGame;
 
-import java.util.Random;
 
 import mapGeneration.GridGenerator;
 import mapGeneration.display.TileDrawer;
@@ -14,7 +13,6 @@ import org.lwjgl.opengl.GL11;
 
 import theGame.General.Interval;
 import theGame.UI.Frame;
-import theGame.UI.Tile;
 import theGame.UI.Map;
 import theGame.UI.Triggers.ArrowTrigger;
 import theGame.engine.input.EventManager;
@@ -49,8 +47,8 @@ public class Bootstrap {
 	GL11.glOrtho(0, DISPLAY_WIDTH, 0, DISPLAY_HEIGTH, 1, -1);
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	
-	Map map = new Map(generator.generateHeigthMap());
-	Frame frame = new Frame(map, drawer, new Interval(0, DISPLAY_WIDTH),new Interval(0, DISPLAY_HEIGTH));
+	Map map = new Map(generator.generateHeigthMap(), drawer);
+	Frame frame = new Frame(map, new Interval(0, DISPLAY_WIDTH),new Interval(0, DISPLAY_HEIGTH));
 	EventManager eventManager = new EventManager(new EventPoller());
 	MoveFrameService service = new MoveFrameService(frame);
 	eventManager.registerTrigger(new ArrowTrigger(service, 5));

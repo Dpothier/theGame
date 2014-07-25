@@ -1,9 +1,6 @@
 package theGame.UI;
 
-import org.mockito.Mock;
-
 import theGame.General.Interval;
-import mapGeneration.display.TileDrawer;
 
 public class Frame {
 	
@@ -11,18 +8,16 @@ public class Frame {
 	private Interval heigth;
 
 	private Map map;
-	private TileDrawer tileDrawer;
 	
-	public Frame(Map map, TileDrawer tileDrawer, Interval width, Interval heigth) {
+	public Frame(Map map,Interval width, Interval heigth) {
 		this.map = map;
-		this.tileDrawer = tileDrawer;
 		this.width = width;
 		this.heigth = heigth;
 	}
 
 	public void display() {
 		Map framedMap = map.getSubmap(width, heigth);
-		framedMap.draw(tileDrawer);
+		framedMap.draw();
 	}
 	
 	public void move(int x, int y){

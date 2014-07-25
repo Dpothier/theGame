@@ -1,6 +1,5 @@
 package theGame;
 
-import static org.junit.Assert.*;
 
 import java.awt.Color;
 

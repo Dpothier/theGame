@@ -36,7 +36,7 @@ public class MapTest {
 		tiles[1][2] = tile8;
 		tiles[2][2] = tile9;
 		
-		map = new Map(tiles);
+		map = new Map(tiles, drawer);
 	}
 	
 	@Test
@@ -100,7 +100,7 @@ public class MapTest {
 	
 	@Test
 	public void draw_uses_drawer_on_every_tile(){
-		map.draw(drawer);
+		map.draw();
 		
 		verify(drawer).drawTile(0, 0, tile1);
 		verify(drawer).drawTile(1, 0, tile2);

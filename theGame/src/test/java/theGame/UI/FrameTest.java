@@ -1,11 +1,9 @@
 package theGame.UI;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import mapGeneration.display.TileDrawer;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +33,7 @@ public class FrameTest {
 	public void SetUp(){
 		width = new Interval(0, FRAME_WIDTH);
 		heigth = new Interval(0, FRAME_HEIGTH);
-		frame = new Frame(map, tileDrawer, width, heigth);
+		frame = new Frame(map, width, heigth);
 	}
 	
 	@Test
@@ -44,7 +42,7 @@ public class FrameTest {
 		
 		frame.display();
 		
-		verify(framedMap).draw(tileDrawer);
+		verify(framedMap).draw();
 	}
 
 }

@@ -1,7 +1,6 @@
 package theGame.gameServices;
 
 import theGame.UI.Frame;
-import jeu.quadsAdventure.gameService.Position;
 
 public class MoveFrameService {
 	

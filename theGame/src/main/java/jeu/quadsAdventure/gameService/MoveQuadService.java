@@ -5,8 +5,6 @@ public class MoveQuadService {
     private int xspeed;
     private int yspeed;
 
-    private int x;
-    private int y;
     private Position position;
 
     public MoveQuadService(Position initialPosition) {
