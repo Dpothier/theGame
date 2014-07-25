@@ -33,9 +33,9 @@ public class ArrowTrigger implements EventBasedTrigger{
     private void reactToKeyDown(Event event) {
         if (event.button == Keyboard.KEY_DOWN) {
             if (buttonIsPressed(event)) {
-                moveService.setSpeed(0, -speed);
+                moveService.accelerate(0, -speed);
             } else {
-                moveService.stop();
+                moveService.deccelerate(0, -speed);;
             }
         }
     }
@@ -43,10 +43,10 @@ public class ArrowTrigger implements EventBasedTrigger{
     private void reactToKeyUp(Event event) {
         if (event.button == Keyboard.KEY_UP) {
             if (buttonIsPressed(event)) {
-                moveService.setSpeed(0, speed);
+                moveService.accelerate(0, speed);
 
             } else {
-                moveService.stop();
+                moveService.deccelerate(0, speed);
             }
         }
     }
@@ -54,10 +54,10 @@ public class ArrowTrigger implements EventBasedTrigger{
     private void reactToKeyLeft(Event event) {
         if (event.button == Keyboard.KEY_LEFT) {
             if (buttonIsPressed(event)) {
-                moveService.setSpeed(-speed, 0);
+                moveService.accelerate(-speed, 0);
 
             } else {
-                moveService.stop();
+                moveService.deccelerate(-speed, 0);
             }
         }
     }
@@ -65,9 +65,9 @@ public class ArrowTrigger implements EventBasedTrigger{
     private void reactToKeyRigth(Event event) {
         if (event.button == Keyboard.KEY_RIGHT) {
             if (buttonIsPressed(event)) {
-                moveService.setSpeed(speed, 0);
+                moveService.accelerate(speed, 0);
             } else {
-                moveService.stop();
+                moveService.deccelerate(speed, 0);
             }
         }
     }

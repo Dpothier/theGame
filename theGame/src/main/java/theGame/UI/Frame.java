@@ -34,6 +34,12 @@ public class Frame {
 	}
 
 	private boolean canMove(int x, int y) {
+		if(width.move(x).getStartPoint() < 0){
+			return false;
+		}
+		if(heigth.move(y).getStartPoint() < 0){
+			return false;
+		}
 		if(width.move(x).getEndPoint()  > map.getTiles().length){
 			return false;
 		}
