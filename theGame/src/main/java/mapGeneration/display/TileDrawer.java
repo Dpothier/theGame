@@ -14,9 +14,7 @@ public class TileDrawer {
 		this.waterLevel = waterLevel;
 	}
 
-	public void drawTile(int tileColumn, int tileRow,int tileSize, Tile tile){
-		int tileStartX = tileColumn * tileSize;
-		int tileStartY = tileRow * tileSize;
+	public void drawTile(int tileStartX, int tileStartY,int tileSize, Tile tile){
 		
 		if(tile.heigth<= waterLevel){
 			setWaterColor((int)(tile.heigth*255));

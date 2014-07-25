@@ -51,14 +51,14 @@ public class MapTest {
 		map.draw();
 		
 		verify(drawer).drawTile(0, 0, A_TILE_SIZE, tile1);
-		verify(drawer).drawTile(1, 0, A_TILE_SIZE, tile2);
-		verify(drawer).drawTile(2, 0, A_TILE_SIZE, tile3);
-		verify(drawer).drawTile(0, 1, A_TILE_SIZE, tile4);
-		verify(drawer).drawTile(1, 1, A_TILE_SIZE, tile5);
-		verify(drawer).drawTile(2, 1, A_TILE_SIZE, tile6);
-		verify(drawer).drawTile(0, 2, A_TILE_SIZE, tile7);
-		verify(drawer).drawTile(1, 2, A_TILE_SIZE, tile8);
-		verify(drawer).drawTile(2, 2, A_TILE_SIZE, tile9);
+		verify(drawer).drawTile(1*A_TILE_SIZE, 0*A_TILE_SIZE, A_TILE_SIZE, tile2);
+		verify(drawer).drawTile(2*A_TILE_SIZE, 0*A_TILE_SIZE, A_TILE_SIZE, tile3);
+		verify(drawer).drawTile(0*A_TILE_SIZE, 1*A_TILE_SIZE, A_TILE_SIZE, tile4);
+		verify(drawer).drawTile(1*A_TILE_SIZE, 1*A_TILE_SIZE, A_TILE_SIZE, tile5);
+		verify(drawer).drawTile(2*A_TILE_SIZE, 1*A_TILE_SIZE, A_TILE_SIZE, tile6);
+		verify(drawer).drawTile(0*A_TILE_SIZE, 2*A_TILE_SIZE, A_TILE_SIZE, tile7);
+		verify(drawer).drawTile(1*A_TILE_SIZE, 2*A_TILE_SIZE, A_TILE_SIZE, tile8);
+		verify(drawer).drawTile(2*A_TILE_SIZE, 2*A_TILE_SIZE, A_TILE_SIZE, tile9);
 	}
 
 }

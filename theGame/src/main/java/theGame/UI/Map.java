@@ -26,7 +26,7 @@ public class Map implements Widget{
 		
 		for(int i = 0; i < framedTiles.length; i++){
 			for(int j = 0; j < framedTiles[i].length; j++){
-				drawer.drawTile(i, j,tileSize, framedTiles[i][j]);
+				drawer.drawTile(i*tileSize, j*tileSize,tileSize, framedTiles[i][j]);
 			}
 		}
 	}
