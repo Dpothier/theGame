@@ -22,13 +22,7 @@ public class Map implements Widget{
 	}
 
 	public void draw() {
-		Tile[][] framedTiles = frame.tilesInFrame(tiles);
-		
-		for(int i = 0; i < framedTiles.length; i++){
-			for(int j = 0; j < framedTiles[i].length; j++){
-				drawer.drawTile(i*tileSize, j*tileSize,tileSize, framedTiles[i][j]);
-			}
-		}
+		frame.draw(tiles, drawer, tileSize);
 	}
 
 	

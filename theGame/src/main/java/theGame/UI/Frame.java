@@ -1,5 +1,7 @@
 package theGame.UI;
 
+import mapGeneration.display.TileDrawer;
+
 import org.junit.Assert;
 
 import theGame.General.BoundedInterval;
@@ -37,6 +39,17 @@ public class Frame {
 	public void move(int x, int y){
 			width = width.move(x);
 			heigth = heigth.move(y);
+	}
+
+	public void draw(Tile[][] tiles, TileDrawer drawer, int tileSize) {
+		Tile[][] framedTiles = tilesInFrame(tiles);
+		
+		for(int i = 0; i < framedTiles.length; i++){
+			for(int j = 0; j < framedTiles[i].length; j++){
+				drawer.drawTile(i*tileSize, j*tileSize,tileSize, framedTiles[i][j]);
+			}
+		}
+		
 	}
 
 }
