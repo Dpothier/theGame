@@ -15,6 +15,14 @@ public class Frame {
 		this.heigth = heigth;
 	}
 	
+	public Interval getWidth(){
+		return width;
+	}
+	
+	public Interval getHeigth(){
+		return heigth;
+	}
+	
 	public Tile[][] tilesInFrame(Tile[][] tiles){
 		Tile[][] submapTiles = new Tile[width.distance() + 1][heigth.distance() + 1];
 		for(int i = 0; i < width.distance() + 1; i++){
