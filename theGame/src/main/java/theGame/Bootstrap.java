@@ -16,6 +16,10 @@ import theGame.General.Interval;
 import theGame.UI.Frame;
 import theGame.UI.Tile;
 import theGame.UI.Map;
+import theGame.UI.Triggers.ArrowTrigger;
+import theGame.engine.input.EventManager;
+import theGame.engine.input.EventPoller;
+import theGame.gameServices.MoveFrameService;
 
 public class Bootstrap {
 	
@@ -47,6 +51,9 @@ public class Bootstrap {
 	
 	Map map = new Map(generator.generateHeigthMap());
 	Frame frame = new Frame(map, drawer, new Interval(0, DISPLAY_WIDTH),new Interval(0, DISPLAY_HEIGTH));
+	EventManager eventManager = new EventManager(new EventPoller());
+	MoveFrameService service = new MoveFrameService(frame);
+	eventManager.registerTrigger(new ArrowTrigger(service, 5));
 	System.out.println("Generation over");
 	
  
@@ -54,7 +61,8 @@ public class Bootstrap {
 	    // Clear the screen and depth buffer
 	    GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);	
 
-	    frame.move(1, 1);
+	    eventManager.manageEvents();
+	    service.move();
 		frame.display();
  
 	    Display.update();
