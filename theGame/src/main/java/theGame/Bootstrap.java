@@ -49,7 +49,7 @@ public class Bootstrap {
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	
 	Frame frame = new Frame(new BoundedInterval(new Interval(0, MAP_WIDTH -1), 0, DISPLAY_WIDTH - 1),new BoundedInterval(new Interval(0, MAP_HEIGTH -1), 0, DISPLAY_HEIGTH - 1));
-	Map map = new Map(generator.generateHeigthMap(),drawer, frame);
+	Map map = new Map(generator.generateHeigthMap(),drawer, frame, TILE_SIZE);
 	
 	EventManager eventManager = new EventManager(new EventPoller());
 	MoveFrameService service = new MoveFrameService(frame);

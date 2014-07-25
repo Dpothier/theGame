@@ -8,15 +8,17 @@ public class Map implements Widget{
 	private Tile[][] tiles;
 	private TileDrawer drawer;
 	private Frame frame;
+	private int tileSize;
 	
 	public Tile[][] getTiles(){
 		return tiles;
 	}
 	
-	public Map(Tile[][] tiles, TileDrawer drawer, Frame frame) {
+	public Map(Tile[][] tiles, TileDrawer drawer, Frame frame, int tileSize) {
 		this.drawer = drawer;
 		this.tiles = tiles;
 		this.frame = frame;
+		this.tileSize = tileSize;
 	}
 
 	public void draw() {
@@ -24,7 +26,7 @@ public class Map implements Widget{
 		
 		for(int i = 0; i < framedTiles.length; i++){
 			for(int j = 0; j < framedTiles[i].length; j++){
-				drawer.drawTile(i, j, framedTiles[i][j]);
+				drawer.drawTile(i, j,tileSize, framedTiles[i][j]);
 			}
 		}
 	}

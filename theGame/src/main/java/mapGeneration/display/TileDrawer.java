@@ -8,15 +8,13 @@ import theGame.UI.Tile;
 
 public class TileDrawer {
 	
-	private int tileSize;
 	private double waterLevel;
 
 	public TileDrawer(int tileSize, double waterLevel) {
-		this.tileSize = tileSize;
 		this.waterLevel = waterLevel;
 	}
 
-	public void drawTile(int tileColumn, int tileRow, Tile tile){
+	public void drawTile(int tileColumn, int tileRow,int tileSize, Tile tile){
 		int tileStartX = tileColumn * tileSize;
 		int tileStartY = tileRow * tileSize;
 		

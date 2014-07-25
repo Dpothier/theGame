@@ -14,6 +14,7 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MapTest {
+	private static final int A_TILE_SIZE = 2;
 	
 	@Mock
 	private Tile tile1,tile2,tile3,
@@ -40,7 +41,7 @@ public class MapTest {
 		tiles[1][2] = tile8;
 		tiles[2][2] = tile9;
 		
-		map = new Map(tiles, drawer, frame);
+		map = new Map(tiles, drawer, frame, A_TILE_SIZE);
 	}
 
 	
@@ -49,15 +50,15 @@ public class MapTest {
 		when(frame.tilesInFrame(tiles)).thenReturn(tiles);
 		map.draw();
 		
-		verify(drawer).drawTile(0, 0, tile1);
-		verify(drawer).drawTile(1, 0, tile2);
-		verify(drawer).drawTile(2, 0, tile3);
-		verify(drawer).drawTile(0, 1, tile4);
-		verify(drawer).drawTile(1, 1, tile5);
-		verify(drawer).drawTile(2, 1, tile6);
-		verify(drawer).drawTile(0, 2, tile7);
-		verify(drawer).drawTile(1, 2, tile8);
-		verify(drawer).drawTile(2, 2, tile9);
+		verify(drawer).drawTile(0, 0, A_TILE_SIZE, tile1);
+		verify(drawer).drawTile(1, 0, A_TILE_SIZE, tile2);
+		verify(drawer).drawTile(2, 0, A_TILE_SIZE, tile3);
+		verify(drawer).drawTile(0, 1, A_TILE_SIZE, tile4);
+		verify(drawer).drawTile(1, 1, A_TILE_SIZE, tile5);
+		verify(drawer).drawTile(2, 1, A_TILE_SIZE, tile6);
+		verify(drawer).drawTile(0, 2, A_TILE_SIZE, tile7);
+		verify(drawer).drawTile(1, 2, A_TILE_SIZE, tile8);
+		verify(drawer).drawTile(2, 2, A_TILE_SIZE, tile9);
 	}
 
 }
