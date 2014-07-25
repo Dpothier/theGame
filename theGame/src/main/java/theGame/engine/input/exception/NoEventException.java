@@ -1,4 +1,4 @@
-package jeu.engine.input.exception;
+package theGame.engine.input.exception;
 
 public class NoEventException extends RuntimeException {
 

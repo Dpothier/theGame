@@ -1,14 +1,15 @@
-package jeu.engine.input;
+package theGame.engine.input;
 
 import static org.mockito.Mockito.*;
-import jeu.engine.input.*;
-import jeu.engine.input.event.*;
-import jeu.engine.input.exception.*;
 
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.*;
 import org.mockito.runners.*;
+
+import theGame.engine.input.*;
+import theGame.engine.input.event.*;
+import theGame.engine.input.exception.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EventManagerTest {

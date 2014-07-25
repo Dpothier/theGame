@@ -1,8 +1,8 @@
-package jeu.engine.input;
+package theGame.engine.input;
 
 import java.util.*;
 
-import jeu.engine.input.event.*;
+import theGame.engine.input.event.*;
 
 public class EventManager {
 

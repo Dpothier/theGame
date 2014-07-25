@@ -1,11 +1,11 @@
-package jeu.engine.input;
+package theGame.engine.input;
 
 import java.util.*;
 
-import jeu.engine.input.event.*;
-import jeu.engine.input.exception.*;
-
 import org.lwjgl.input.*;
+
+import theGame.engine.input.event.*;
+import theGame.engine.input.exception.*;
 
 public class EventPoller {
 

@@ -1,4 +1,4 @@
-package jeu.engine.input.event;
+package theGame.engine.input.event;
 
 public class Event {
 

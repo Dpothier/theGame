@@ -1,10 +1,11 @@
 package jeu.quadsAdventure.triggers;
 
-import jeu.engine.input.*;
-import jeu.engine.input.event.*;
 import jeu.quadsAdventure.gameService.*;
 
 import org.lwjgl.input.*;
+
+import theGame.engine.input.*;
+import theGame.engine.input.event.*;
 
 public class ArrowTrigger implements EventBasedTrigger {
 

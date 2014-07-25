@@ -2,7 +2,6 @@ package jeu.quadsAdventure.triggers;
 
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
-import jeu.engine.input.event.*;
 import jeu.quadsAdventure.gameService.*;
 
 import org.junit.*;
@@ -10,6 +9,8 @@ import org.junit.runner.*;
 import org.lwjgl.input.*;
 import org.mockito.*;
 import org.mockito.runners.*;
+
+import theGame.engine.input.event.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ArrowTriggerTest {

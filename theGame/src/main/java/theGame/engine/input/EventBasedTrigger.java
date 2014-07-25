@@ -1,6 +1,6 @@
-package jeu.engine.input;
+package theGame.engine.input;
 
-import jeu.engine.input.event.*;
+import theGame.engine.input.event.*;
 
 public interface EventBasedTrigger {
 
