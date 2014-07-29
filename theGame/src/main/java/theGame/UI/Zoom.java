@@ -6,7 +6,7 @@ public class Zoom {
 	private int maximumSize;
 	private int minimumSize;
 
-	public Zoom(int initialSize, int maximumSize, int minimumSize) {
+	public Zoom(int initialSize, int minimumSize, int maximumSize) {
 		this.tileSize = initialSize;
 		this.maximumSize = maximumSize;
 		this.minimumSize = minimumSize;

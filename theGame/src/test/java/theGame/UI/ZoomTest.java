@@ -17,7 +17,7 @@ public class ZoomTest {
 	
 	@Before
 	public void setup(){
-		zoom = new Zoom(INITIAL_SIZE, MAXIMUM_SIZE, MINIMUM_SIZE);
+		zoom = new Zoom(INITIAL_SIZE, MINIMUM_SIZE, MAXIMUM_SIZE);
 	}
 	
 	@Test
@@ -41,14 +41,14 @@ public class ZoomTest {
 	
 	@Test
 	public void If_Zooming_Would_Make_Size_Bigger_Than_Maximum_Size_Then_Zooming_Does_Nothing(){
-		zoom = new Zoom(MAXIMUM_SIZE, MAXIMUM_SIZE, MINIMUM_SIZE);
+		zoom = new Zoom(MAXIMUM_SIZE, MINIMUM_SIZE, MAXIMUM_SIZE);
 		zoom.zoom();
 		Assert.assertEquals(MAXIMUM_SIZE, zoom.getSize());
 	}
 	
 	@Test
 	public void If_Unzooming_Would_Make_Size_Smaller_Than_Minimum_Size_Then_Zooming_Does_Nothing(){
-		zoom = new Zoom(MINIMUM_SIZE, MAXIMUM_SIZE, MINIMUM_SIZE);
+		zoom = new Zoom(MINIMUM_SIZE, MINIMUM_SIZE, MAXIMUM_SIZE);
 		zoom.unzoom();
 		Assert.assertEquals(MINIMUM_SIZE, zoom.getSize());
 	}

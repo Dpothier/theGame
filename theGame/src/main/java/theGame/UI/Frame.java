@@ -11,10 +11,12 @@ public class Frame {
 	
 	private Interval width;
 	private Interval heigth;
+	private Zoom zoom;
 	
-	public Frame(Interval width, Interval heigth) {
+	public Frame(Interval width, Interval heigth, Zoom zoom) {
 		this.width = width;
 		this.heigth = heigth;
+		this.zoom = zoom;
 	}
 	
 	public Interval getWidth(){
@@ -28,7 +30,7 @@ public class Frame {
 	public Tile[][] tilesInFrame(Tile[][] tiles){
 		Tile[][] submapTiles = new Tile[width.distance() + 1][heigth.distance() + 1];
 		for(int i = 0; i < width.distance() + 1; i++){
-			for(int j = 0; j < heigth.distance() + 1; j++){
+			for(int j = 0; j < heigth.distance()+1; j++){
 				submapTiles[i][j] = tiles[i + width.getStartPoint()][j + heigth.getStartPoint()];
 			}
 		}
@@ -46,7 +48,7 @@ public class Frame {
 		
 		for(int i = 0; i < framedTiles.length; i++){
 			for(int j = 0; j < framedTiles[i].length; j++){
-				drawer.drawTile(i*tileSize, j*tileSize,tileSize, framedTiles[i][j]);
+				drawer.drawTile(i*zoom.getSize(), j*zoom.getSize(),zoom.getSize(), framedTiles[i][j]);
 			}
 		}
 		

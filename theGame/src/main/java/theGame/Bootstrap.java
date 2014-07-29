@@ -15,7 +15,9 @@ import theGame.General.BoundedInterval;
 import theGame.General.Interval;
 import theGame.UI.Frame;
 import theGame.UI.Map;
+import theGame.UI.Zoom;
 import theGame.UI.Triggers.ArrowTrigger;
+import theGame.UI.Triggers.ZoomingTrigger;
 import theGame.engine.input.EventManager;
 import theGame.engine.input.EventPoller;
 import theGame.gameServices.MoveFrameService;
@@ -27,6 +29,10 @@ public class Bootstrap {
 	public static final int DISPLAY_HEIGTH = 480;
 	public static final int MAP_WIDTH = 800;
 	public static final int MAP_HEIGTH = 800;
+	
+	public static final int INITIAL_TILE_SIZE = 5;
+	public static final int MAXIMUM_TILE_SIZE = 10;
+	public static final int MINIMUM_TILE_SIZE = 2;
 	
 	TileDrawer drawer = new TileDrawer(TILE_SIZE, 0.5);
 	PerlinNoise noise = new PerlinNoise(256);
@@ -47,13 +53,14 @@ public class Bootstrap {
 	GL11.glLoadIdentity();
 	GL11.glOrtho(0, DISPLAY_WIDTH, 0, DISPLAY_HEIGTH, 1, -1);
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
-	
-	Frame frame = new Frame(new BoundedInterval(new Interval(0, MAP_WIDTH -1), 0, DISPLAY_WIDTH - 1),new BoundedInterval(new Interval(0, MAP_HEIGTH -1), 0, DISPLAY_HEIGTH - 1));
+	Zoom zoom = new Zoom(INITIAL_TILE_SIZE,MINIMUM_TILE_SIZE,MAXIMUM_TILE_SIZE);
+	Frame frame = new Frame(new BoundedInterval(new Interval(0, MAP_WIDTH -1), 0, DISPLAY_WIDTH - 1),new BoundedInterval(new Interval(0, MAP_HEIGTH -1), 0, DISPLAY_HEIGTH - 1), zoom);
 	Map map = new Map(generator.generateHeigthMap(),drawer, frame, TILE_SIZE);
 	
 	EventManager eventManager = new EventManager(new EventPoller());
 	MoveFrameService service = new MoveFrameService(frame);
 	eventManager.registerTrigger(new ArrowTrigger(service, 5));
+	eventManager.registerTrigger(new ZoomingTrigger(zoom));
 	System.out.println("Generation over");
 	
  

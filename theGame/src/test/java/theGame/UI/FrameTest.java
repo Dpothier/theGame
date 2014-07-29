@@ -34,6 +34,9 @@ public class FrameTest {
 	@Mock
 	private TileDrawer tileDrawer;
 	
+	@Mock
+	private Zoom zoom;
+	
 	private Frame frame;
 	
 	@Before
@@ -49,7 +52,7 @@ public class FrameTest {
 		tiles[1][2] = tile8;
 		tiles[2][2] = tile9;
 		
-		frame = new Frame(width, heigth);
+		frame = new Frame(width, heigth, zoom);
 	}
 	
 	@Test
