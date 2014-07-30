@@ -1,6 +1,6 @@
 package theGame.gameServices;
 
-import theGame.UI.Frame;
+import theGame.UI.Map.Frame;
 
 public class MoveFrameService {
 	

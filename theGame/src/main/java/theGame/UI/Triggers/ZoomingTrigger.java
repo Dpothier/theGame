@@ -2,7 +2,7 @@ package theGame.UI.Triggers;
 
 import org.lwjgl.input.Keyboard;
 
-import theGame.UI.Zoom;
+import theGame.UI.Map.Zoom;
 import theGame.engine.input.EventBasedTrigger;
 import theGame.engine.input.event.Event;
 import theGame.engine.input.event.Peripheral;

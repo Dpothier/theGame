@@ -1,6 +1,7 @@
 package theGame.UI.Triggers;
 
 import static org.mockito.Mockito.verify;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +9,7 @@ import org.lwjgl.input.Keyboard;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import theGame.UI.Zoom;
+import theGame.UI.Map.Zoom;
 import theGame.engine.input.event.Event;
 import theGame.engine.input.event.Peripheral;
 

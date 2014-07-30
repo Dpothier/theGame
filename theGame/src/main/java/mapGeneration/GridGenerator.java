@@ -1,6 +1,6 @@
 package mapGeneration;
 
-import theGame.UI.Tile;
+import theGame.UI.Map.Tile;
 import mapGeneration.noise.Noise;
 
 public class GridGenerator {

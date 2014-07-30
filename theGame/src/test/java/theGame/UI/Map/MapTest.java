@@ -1,4 +1,4 @@
-package theGame.UI;
+package theGame.UI.Map;
 
 import static org.mockito.Mockito.when;
 import mapGeneration.display.TileDrawer;
@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import theGame.General.Interval;
+import theGame.UI.Map.Map;
 import static org.mockito.Mockito.verify;
 
 

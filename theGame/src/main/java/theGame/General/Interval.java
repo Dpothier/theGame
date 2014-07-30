@@ -21,8 +21,8 @@ public class Interval {
 		return endPoint;
 	}
 
-	public int distance() {
-		return endPoint - startPoint;
+	public int length() {
+		return endPoint - startPoint + 1;
 	}
 	
 	public Interval move(int distance){

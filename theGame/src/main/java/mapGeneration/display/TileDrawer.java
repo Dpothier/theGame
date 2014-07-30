@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import org.lwjgl.opengl.GL11;
 
-import theGame.UI.Tile;
+import theGame.UI.Map.Tile;
 
 public class TileDrawer {
 	

@@ -13,8 +13,8 @@ public class BoundedInterval extends Interval {
 		}
 	}
 	
-	public Interval move(int x){
-		Interval toReturn;
+	public BoundedInterval move(int x){
+		BoundedInterval toReturn;
 		try{
 			toReturn = new BoundedInterval(container, startPoint + x, endPoint + x);
 		} catch(Exception e){

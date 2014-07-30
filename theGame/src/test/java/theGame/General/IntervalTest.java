@@ -20,7 +20,7 @@ public class IntervalTest {
 	public void distance_value_is_difference_between_end_and_start_point(){
 		Interval distance = new Interval(A_START_POINT, A_END_POINT);
 		
-		Assert.assertEquals(A_END_POINT - A_START_POINT, distance.distance());
+		Assert.assertEquals(A_END_POINT - A_START_POINT, distance.length());
 	}
 
 }

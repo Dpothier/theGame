@@ -13,9 +13,10 @@ import org.lwjgl.opengl.GL11;
 
 import theGame.General.BoundedInterval;
 import theGame.General.Interval;
-import theGame.UI.Frame;
-import theGame.UI.Map;
-import theGame.UI.Zoom;
+import theGame.General.Rectangle;
+import theGame.UI.Map.Frame;
+import theGame.UI.Map.Map;
+import theGame.UI.Map.Zoom;
 import theGame.UI.Triggers.ArrowTrigger;
 import theGame.UI.Triggers.ZoomingTrigger;
 import theGame.engine.input.EventManager;
@@ -54,7 +55,8 @@ public class Bootstrap {
 	GL11.glOrtho(0, DISPLAY_WIDTH, 0, DISPLAY_HEIGTH, 1, -1);
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	Zoom zoom = new Zoom(INITIAL_TILE_SIZE,MINIMUM_TILE_SIZE,MAXIMUM_TILE_SIZE);
-	Frame frame = new Frame(new BoundedInterval(new Interval(0, MAP_WIDTH -1), 0, DISPLAY_WIDTH - 1),new BoundedInterval(new Interval(0, MAP_HEIGTH -1), 0, DISPLAY_HEIGTH - 1), zoom);
+	Rectangle position = new Rectangle(new BoundedInterval(new Interval(0, MAP_WIDTH -1), 0, DISPLAY_WIDTH - 1),new BoundedInterval(new Interval(0, MAP_HEIGTH -1), 0, DISPLAY_HEIGTH - 1));
+	Frame frame = new Frame(position, zoom);
 	Map map = new Map(generator.generateHeigthMap(),drawer, frame, TILE_SIZE);
 	
 	EventManager eventManager = new EventManager(new EventPoller());

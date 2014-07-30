@@ -1,4 +1,4 @@
-package theGame.UI;
+package theGame.UI.Map;
 
 public class Zoom {
 

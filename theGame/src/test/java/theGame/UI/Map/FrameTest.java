@@ -1,4 +1,4 @@
-package theGame.UI;
+package theGame.UI.Map;
 
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
@@ -12,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import theGame.General.Interval;
+import theGame.General.Rectangle;
+import theGame.UI.Map.Map;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FrameTest {
@@ -26,6 +28,8 @@ public class FrameTest {
 	private Interval width;
 	@Mock
 	private Interval heigth;
+	@Mock
+	private Rectangle position;
 	
 	@Mock
 	private Map map;
@@ -52,15 +56,15 @@ public class FrameTest {
 		tiles[1][2] = tile8;
 		tiles[2][2] = tile9;
 		
-		frame = new Frame(width, heigth, zoom);
+		frame = new Frame(position, zoom);
 	}
 	
 	@Test
 	public void when_frame_is_on_top_left_correct_tiles_are_returned(){
 		when(width.getStartPoint()).thenReturn(0);
-		when(width.distance()).thenReturn(1);
+		when(width.length()).thenReturn(1);
 		when(heigth.getStartPoint()).thenReturn(0);
-		when(heigth.distance()).thenReturn(1);
+		when(heigth.length()).thenReturn(1);
 		
 		Tile[][] returnedTiles = frame.tilesInFrame(tiles);
 		
@@ -75,9 +79,9 @@ public class FrameTest {
 	@Test
 	public void when_frame_is_on_bottom_rigth_correct_tiles_are_returned(){
 		when(width.getStartPoint()).thenReturn(1);
-		when(width.distance()).thenReturn(1);
+		when(width.length()).thenReturn(1);
 		when(heigth.getStartPoint()).thenReturn(1);
-		when(heigth.distance()).thenReturn(1);
+		when(heigth.length()).thenReturn(1);
 		
 		Tile[][] returnedTiles = frame.tilesInFrame(tiles);
 		assertSize(returnedTiles, 2, 2);
@@ -90,9 +94,9 @@ public class FrameTest {
 	@Test
 	public void when_frame_is_on_topmost_row_correct_tiles_are_returned(){
 		when(width.getStartPoint()).thenReturn(0);
-		when(width.distance()).thenReturn(2);
+		when(width.length()).thenReturn(2);
 		when(heigth.getStartPoint()).thenReturn(0);
-		when(heigth.distance()).thenReturn(0);
+		when(heigth.length()).thenReturn(0);
 		
 		Tile[][] returnedTiles = frame.tilesInFrame(tiles);
 		assertSize(returnedTiles, 3, 1);
@@ -104,9 +108,9 @@ public class FrameTest {
 	@Test
 	public void when_frame_is_on_leftmost_column_tiles_are_returned(){
 		when(width.getStartPoint()).thenReturn(0);
-		when(width.distance()).thenReturn(0);
+		when(width.length()).thenReturn(0);
 		when(heigth.getStartPoint()).thenReturn(0);
-		when(heigth.distance()).thenReturn(2);
+		when(heigth.length()).thenReturn(2);
 		
 		Tile[][] returnedTiles = frame.tilesInFrame(tiles);
 		assertSize(returnedTiles, 1, 3);

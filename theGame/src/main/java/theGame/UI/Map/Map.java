@@ -1,6 +1,7 @@
-package theGame.UI;
+package theGame.UI.Map;
 
 import theGame.General.Interval;
+import theGame.UI.Widget;
 import mapGeneration.display.TileDrawer;
 
 public class Map implements Widget{
@@ -23,6 +24,10 @@ public class Map implements Widget{
 
 	public void draw() {
 		frame.draw(tiles, drawer, tileSize);
+	}
+	
+	public void moveFrame(int x, int y){
+		frame = frame.move(x, y);
 	}
 
 	

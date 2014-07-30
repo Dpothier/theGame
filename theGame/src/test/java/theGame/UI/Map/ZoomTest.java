@@ -1,4 +1,4 @@
-package theGame.UI;
+package theGame.UI.Map;
 
 
 import org.junit.Assert;
@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import theGame.UI.Map.Zoom;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ZoomTest {
