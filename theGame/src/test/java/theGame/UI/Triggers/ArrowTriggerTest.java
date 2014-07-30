@@ -64,7 +64,7 @@ public class ArrowTriggerTest {
 	
 	@Test
 	public void Pressing_Right_Key_Accelerate_In_Positive_X(){
-		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_RIGHT, true, 0, 0, 0, 0);
+		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_RIGHT, true);
 		
 		trigger.reactToEvent(event);
 		
@@ -73,7 +73,7 @@ public class ArrowTriggerTest {
 	
 	@Test
 	public void Releasing_Right_Key_Deccelarate_In_Positive_X(){
-		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_RIGHT, false, 0,0,0,0);
+		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_RIGHT, false);
 		
 		trigger.reactToEvent(event);
 		
@@ -82,7 +82,7 @@ public class ArrowTriggerTest {
 	
 	@Test
 	public void Pressing_Left_Key_Accelerate_In_Negative_X(){
-		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_LEFT, true, 0, 0, 0, 0);
+		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_LEFT, true);
 		
 		trigger.reactToEvent(event);
 		
@@ -91,7 +91,7 @@ public class ArrowTriggerTest {
 	
 	@Test
 	public void Releasing_Left_Key_Deccelarate_In_Negative_X(){
-		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_LEFT, false, 0,0,0,0);
+		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_LEFT, false);
 		
 		trigger.reactToEvent(event);
 		

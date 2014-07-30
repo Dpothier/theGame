@@ -27,7 +27,7 @@ public class ZoomingTriggerTest {
 	
 	@Test
 	public void Pressing_A_Key_Zooms(){
-		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_A, true, 0,0,0,0);
+		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_A, true);
 		
 		trigger.reactToEvent(event);
 		
@@ -36,7 +36,7 @@ public class ZoomingTriggerTest {
 	
 	@Test
 	public void Pressing_Z_Key_Zooms(){
-		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_Z, true, 0,0,0,0);
+		Event event = new Event(Peripheral.Keyboard, Keyboard.KEY_Z, true);
 		
 		trigger.reactToEvent(event);
 		

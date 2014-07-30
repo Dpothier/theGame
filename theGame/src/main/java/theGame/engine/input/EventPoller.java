@@ -17,8 +17,7 @@ public class EventPoller {
 
     public void pollEvents() {
         while (Keyboard.next()) {
-            polledEventsQueue.add(new Event(Peripheral.Keyboard, Keyboard.getEventKey(), Keyboard.getEventKeyState(),
-                    0, 0, 0, 0));
+            polledEventsQueue.add(new Event(Peripheral.Keyboard, Keyboard.getEventKey(), Keyboard.getEventKeyState()));
         }
         while (Mouse.next()) {
             polledEventsQueue.add(new Event(Peripheral.Mouse, Mouse.getEventButton(), Mouse.getEventButtonState(),

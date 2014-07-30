@@ -12,6 +12,10 @@ public class Event {
         this.mouse_dx = mouse_dx;
         this.mouse_dy = mouse_dy;
     }
+    
+    public Event(Peripheral peripheral, int button, boolean buttonIsPressed){
+    	this(peripheral, button, buttonIsPressed,0,0,0,0);
+    }
 
     public Peripheral peripheral;
 
