@@ -32,11 +32,11 @@ public class Frame {
 		this.ySize = ySize;
 	}
 	
-	public Tile[][] tilesInFrame2(Tile[][] tiles){
+	/*public Tile[][] tilesInFrame2(Tile[][] tiles){
 		Tile[][] submapTiles = new Tile[][];
 		return tiles;
 		
-	}
+	}*/
 	
 	public Tile[][] tilesInFrame(Tile[][] tiles){
 		int numberOfXTiles = tilesInPixels(position.width(), zoom.getSize());
@@ -62,7 +62,7 @@ public class Frame {
 	
 	public Frame zoom(){
 		zoom.zoom();
-		return new Frame(position)
+		return new Frame(position, zoom, numberOfXTiles, numberOfYTiles);
 	}
 
 	public void draw(Tile[][] tiles, TileDrawer drawer, int tileSize) {

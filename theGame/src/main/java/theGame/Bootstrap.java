@@ -56,7 +56,7 @@ public class Bootstrap {
 	GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	Zoom zoom = new Zoom(INITIAL_TILE_SIZE,MINIMUM_TILE_SIZE,MAXIMUM_TILE_SIZE);
 	Rectangle position = new Rectangle(new BoundedInterval(new Interval(0, MAP_WIDTH -1), 0, DISPLAY_WIDTH - 1),new BoundedInterval(new Interval(0, MAP_HEIGTH -1), 0, DISPLAY_HEIGTH - 1));
-	Frame frame = new Frame(position, zoom);
+	Frame frame = new Frame(position, zoom,0,0);
 	Map map = new Map(generator.generateHeigthMap(),drawer, frame, TILE_SIZE);
 	
 	EventManager eventManager = new EventManager(new EventPoller());

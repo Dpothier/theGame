@@ -51,15 +51,7 @@ public class MapTest {
 		when(frame.tilesInFrame(tiles)).thenReturn(tiles);
 		map.draw();
 		
-		verify(drawer).drawTile(0, 0, A_TILE_SIZE, tile1);
-		verify(drawer).drawTile(1*A_TILE_SIZE, 0*A_TILE_SIZE, A_TILE_SIZE, tile2);
-		verify(drawer).drawTile(2*A_TILE_SIZE, 0*A_TILE_SIZE, A_TILE_SIZE, tile3);
-		verify(drawer).drawTile(0*A_TILE_SIZE, 1*A_TILE_SIZE, A_TILE_SIZE, tile4);
-		verify(drawer).drawTile(1*A_TILE_SIZE, 1*A_TILE_SIZE, A_TILE_SIZE, tile5);
-		verify(drawer).drawTile(2*A_TILE_SIZE, 1*A_TILE_SIZE, A_TILE_SIZE, tile6);
-		verify(drawer).drawTile(0*A_TILE_SIZE, 2*A_TILE_SIZE, A_TILE_SIZE, tile7);
-		verify(drawer).drawTile(1*A_TILE_SIZE, 2*A_TILE_SIZE, A_TILE_SIZE, tile8);
-		verify(drawer).drawTile(2*A_TILE_SIZE, 2*A_TILE_SIZE, A_TILE_SIZE, tile9);
+		verify(frame).draw(tiles, drawer, A_TILE_SIZE);
 	}
 
 }
